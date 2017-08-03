@@ -39,6 +39,15 @@ encoders.encode_base64(part)
 part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 msg.attach(part)
 
+'''
+# if within enterprise network use the following lines of code
+
+server = smtplib.SMTP('localhost')
+text = msg.as_string()
+server.sendmail(from_address, to_address, text)
+server.quit()
+'''
+
 server = smtplib.SMTP('smtp.gmail.com', 587)
 server.starttls()
 server.login(from_address, "enter password of the from email address here")
